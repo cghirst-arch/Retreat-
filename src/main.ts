@@ -958,7 +958,7 @@ Arrow keys – Move
 function renderCombat() {
   renderLeftPanel();
   panelEl.innerHTML = `
-<img src="/assets/portraits/${enemy.name}.png" />
+<img src="./assets/portraits/${enemy.name}.png" />
 <pre>
 ${enemy.name.toUpperCase()} (HP ${enemy.hp})
 
