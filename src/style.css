@@ -1,0 +1,236 @@
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: black;
+  color: white;
+  font-family: monospace;
+  overflow: hidden;
+}
+
+
+.title {
+  font-family: "Impact", "Haettenschweiler", "Arial Black", serif;
+  font-size: 3.2rem;
+  
+font-weight: 900;
+color: #ff0000;
+
+  letter-spacing: 0.25em;
+  text-align: center;
+  display: block;
+  margin-top: 2rem;
+}
+
+
+.spin-in {
+  display: inline-block;
+  color: #ffffff;
+  transform: rotateY(180deg);
+  animation: spinIn 0.9s ease-out forwards;
+}
+
+@keyframes spinIn {
+  from {
+    transform: rotateY(180deg);
+    color: #ffffff;
+    text-shadow: none;
+  }
+  to {
+    transform: rotateY(0deg);
+    color: #ff2a2a;
+    text-shadow:
+      0 0 4px #ff2a2a,
+      0 0 10px #b30000,
+      0 0 18px #600000;
+  }
+}
+
+.spin-0 { animation-delay: 0s; }
+.spin-1 { animation-delay: 0.15s; }
+.spin-2 { animation-delay: 0.30s; }
+.spin-3 { animation-delay: 0.45s; }
+.spin-4 { animation-delay: 0.60s; }
+.spin-5 { animation-delay: 0.75s; }
+.spin-6 { animation-delay: 0.90s; }
+.spin-7 { animation-delay: 1.05s; }
+
+
+#wrap {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+#leftPanel,
+#panel {
+  margin-top: 16px;
+}
+
+body.title-screen #mapWrap {
+  justify-content: center;
+  align-items: center;
+  padding-top: 0;
+}
+
+
+
+#panel {
+  width: 280px;
+  max-width: 280px;
+  padding: 16px;
+  font-size: 12px;
+  align-self: flex-start;
+  overflow: hidden;
+}
+
+#panel img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+
+
+
+
+
+
+#mapWrap {
+  display: flex;
+  align-items: flex-start;    /* 👈 KEY FIX */
+  justify-content: center;
+  padding-top: 40px;          /* optional balancing */
+}
+
+
+
+
+
+
+#footer {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #888;
+  pointer-events: none;
+}
+
+
+
+
+
+
+
+#map {
+  font-size: 18px;
+  line-height: 18px;
+
+  margin: 0;
+  padding: 0;
+
+  display: block;
+  white-space: pre;
+  text-align: center;
+
+  max-height: 85vh;   /* ✅ keeps it within screen */
+  overflow: hidden;   /* ✅ prevents drift */
+}
+
+
+
+
+
+#pauseOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+
+  display: none;
+
+  flex-direction: column;      /* ✅ allow stacking */
+  align-items: center;
+  justify-content: flex-start; /* ✅ push content downward */
+
+  z-index: 1000;
+}
+
+#pauseOverlay.active {
+  display: flex;
+}
+
+
+
+.pause-box {
+  position: relative;
+
+  margin-top: 22vh;   /* ✅ pulls it into the title */
+
+  background: #000;   /* ✅ this hides the title behind */
+  border: 2px solid #ff0000;
+
+  padding: 30px 50px;
+
+  z-index: 1002;      /* ✅ ABOVE title */
+  margin-top: 18vh;   /* adjust until it slices through title */
+}
+
+
+
+
+.pause-title {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 100%;              /* ✅ full width */
+  text-align: center;
+
+  font-family: inherit;     /* ✅ same font */
+  font-weight: 900;         /* ✅ match bold title look */
+
+  font-size: 18vw;          /* ✅ scales to screen width */
+  line-height: 1;
+  white-space: nowrap;   /* ✅ keeps letters together */
+  letter-spacing: -0.05em;  /* ✅ tighten spacing */
+  color: #ff0000;           /* ✅ IMPORTANT: force red */
+
+  z-index: 1001;
+  pointer-events: none;
+  
+text-shadow:
+0 0 8px rgba(255, 0, 0, 0.5),
+0 0 30px rgba(255, 0, 0, 0.3);
+
+}
+
+.title-letter {
+  display: inline-block;
+  color: #ff0000;
+}
+
+/* subtle uneven fading like title screen */
+.title-letter:nth-child(1) { opacity: 0.95; }
+.title-letter:nth-child(2) { opacity: 0.85; }
+.title-letter:nth-child(3) { opacity: 1.0; }
+.title-letter:nth-child(4) { opacity: 0.9; }
+.title-letter:nth-child(5) { opacity: 0.8; }
+.title-letter:nth-child(6) { opacity: 1.0; }
+.title-letter:nth-child(7) { opacity: 0.92; }
+.title-letter:nth-child(8) { opacity: 1.0; }
+
+
+
+
+.enemy {
+  color: #ff4d4d;
+  text-shadow:
+    0 0 4px rgba(255, 0, 0, 0.6),
+    0 0 8px rgba(255, 0, 0, 0.4);
+}
+
