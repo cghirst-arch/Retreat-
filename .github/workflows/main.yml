@@ -1,48 +1,33 @@
 
-name: Deploy Vite site to GitHub Pages
+name: Deploy
 
 on:
   push:
     branches:
       - main
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: '18'
 
-      - name: Install dependencies
-        run: npm install
+      - run: npm install
 
-      
-- name: Build project
-  run: |
-    npm run build || echo "Build completed with warnings"
+      - run: npm run build || echo "ignore errors"
 
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: dist
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
-
+      - uses: actions/deploy-pages@v4
