@@ -42,6 +42,20 @@ const USED_WEAPON_PRICE = 80;
 const USED_ARMOR_PRICE = 80;
 const DIRS: [number, number][] = [[1,0],[-1,0],[0,1],[0,-1]];
 
+const weaponTiers = [
+  { name: "Rusty", min: 1, max: 3, atkMin: 1, atkMax: 3 },
+  { name: "Worn", min: 3, max: 6, atkMin: 3, atkMax: 6 },
+  { name: "Iron", min: 6, max: 10, atkMin: 6, atkMax: 10 },
+  { name: "Steel", min: 10, max: 15, atkMin: 9, atkMax: 14 }
+];
+
+const adjectives = [
+  { name: "Cracked", mod: -0.2 },
+  { name: "Balanced", mod: 0 },
+  { name: "Fine", mod: 0.15 },
+  { name: "Sharp", mod: 0.25 }
+];
+
 const MONOLOGUES: Record<number, string> = {
   50: "Why am I the one breathing?\nSir Kaelen was a wall of steel.\nI was just the one who carried the torches.",
   49: "I can still smell the ozone from Mara’s last spell.\nIt didn’t even slow the darkness down.",
@@ -811,6 +825,46 @@ if (enemy.hp <= 0) {
 
   renderCombat();
   renderMap();
+}
+
+function generateLoot(level: number) {
+  return {
+    gold: Math.floor(Math.random() * 10 + level * 2),
+    exp: Math.floor(Math.random() * 8 + level),
+    drop: rollDrop(level)
+  };
+}
+
+function rollDrop(level: number) {
+  const roll = Math.random();
+  if (roll < 0.7) return null;
+
+  return createWeapon(level);
+}
+
+function getTier(level: number, tiers: any[]) {
+  return tiers.find(t => level >= t.min && level < t.max);
+}
+
+function rollStat(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getAdjective() {
+  return adjectives[Math.floor(Math.random() * adjectives.length)];
+}
+
+function createWeapon(level: number) {
+  const tier = getTier(level, weaponTiers);
+  const adj = getAdjective();
+
+  const baseAtk = rollStat(tier.atkMin, tier.atkMax);
+
+  return {
+    type: "weapon",
+    name: `${adj.name} ${tier.name} Sword`,
+    attack: Math.round(baseAtk * (1 + adj.mod))
+  };
 }
 
 function resolveEncounter(killed: boolean) {
