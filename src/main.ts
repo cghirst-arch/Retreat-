@@ -734,11 +734,27 @@ function combatTurn(action: "attack" | "retreat") {
     enemy.hp -= dmg;
     combatText += `You deal ${dmg} damage.\n`;
 
-    if (enemy.hp <= 0) {
-      combatText += `The ${enemy.name} falls.`;
-      resolveEncounter(true);
-      return;
-    }
+    
+if (enemy.hp <= 0) {
+  combatText += `The ${enemy.name} falls.\n`;
+
+  const loot = generateLoot(enemy.level);
+
+  combatText += `You gain ${loot.gold} gold and ${loot.exp} EXP.\n`;
+
+  player.gold += loot.gold;
+  player.exp += loot.exp;
+
+  if (loot.drop) {
+    combatText += `The enemy dropped: ${loot.drop.name} (ATK ${loot.drop.attack})\n`;
+  } else {
+    combatText += `No item dropped.\n`;
+  }
+
+  resolveEncounter(true);
+  return;
+}
+
   }
 
   
