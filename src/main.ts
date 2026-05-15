@@ -1171,6 +1171,7 @@ mapEl.innerHTML =
   
 
  
+
 if (mode === "explore") {
   if (lastLootText) {
     panelEl.innerHTML = `<pre>${lastLootText}</pre>`;
@@ -1179,6 +1180,16 @@ if (mode === "explore") {
     panelEl.innerHTML = "";
   }
 }
+
+if (mode === "loot") {
+  panelEl.innerHTML = `<pre>
+${lastLootText}
+
+[E] Equip
+[G] Convert to gold
+  </pre>`;
+}
+
 
 }
 
