@@ -761,7 +761,8 @@ if (enemy.hp <= 0) {
   player.exp += loot.exp;
 
   if (loot.drop) {
-    combatText += `The enemy dropped: ${loot.drop.name} (ATK ${loot.drop.attack})\n`;
+     player.inventory.push(loot.drop);
+     combatText += `The enemy dropped: ${loot.drop.name} (ATK ${loot.drop.attack})\n`;
   } else {
     combatText += `No item dropped.\n`;
   }
