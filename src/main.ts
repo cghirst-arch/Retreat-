@@ -750,32 +750,30 @@ function combatTurn(action: "attack" | "retreat") {
     combatText += `You deal ${dmg} damage.\n`;
 
     
+
 if (enemy.hp <= 0) {
   combatText += `The ${enemy.name} falls.\n`;
 
-  const loot = generateLoot(enemy.level);
+  const loot = generateLoot(enemy.level || 1);
 
   combatText += `You gain ${loot.gold} gold and ${loot.exp} EXP.\n`;
 
   player.gold += loot.gold || 0;
   player.exp += loot.exp;
-   
+
   console.log("Inventory:", player.inventory);
 
-  
-if (loot.drop) {
-  player.inventory.push(loot.drop);
-  lastLootText = `Found: ${loot.drop.name} (ATK ${loot.drop.attack})`;
-}
-
-     
+  if (loot.drop) {
+    player.inventory.push(loot.drop);
+    lastLootText = `Found: ${loot.drop.name} (ATK ${loot.drop.attack})`;
   } else {
-    combatText += `No item dropped.\n`;
+    lastLootText = "Nothing dropped.";
   }
 
   resolveEncounter(true);
   return;
 }
+
 
   }
 
