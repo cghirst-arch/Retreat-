@@ -1162,7 +1162,16 @@ mapEl.innerHTML =
 
   
 
-  if (mode === "explore") panelEl.innerHTML = "";
+ 
+if (mode === "explore") {
+  if (lastLootText) {
+    panelEl.innerHTML = `<pre>${lastLootText}</pre>`;
+    lastLootText = "";
+  } else {
+    panelEl.innerHTML = "";
+  }
+}
+
 }
 
 /* ========= INPUT ========= */
