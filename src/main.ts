@@ -839,12 +839,11 @@ function generateLoot(level: number) {
   };
 }
 
-function rollDrop(level: number) {
-  const roll = Math.random();
-  if (roll < 0.7) return null;
 
+function rollDrop(level: number) {
   return createWeapon(level);
 }
+
 
 function getTier(level: number, tiers: any[]) {
   return tiers.find(t => level >= t.min && level < t.max);
