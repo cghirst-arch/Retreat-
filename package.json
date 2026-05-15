@@ -7,7 +7,7 @@
 "scripts": {
   "type-check": "tsc --noEmit",
   "dev": "vite",
-  "build": "vite build && ls -R dist"
+  "build": "vite build && ls -R dist",
   "preview": "vite preview"
 }
 ,
