@@ -1219,6 +1219,10 @@ if (mode === "pause") {
 
   pauseOverlay.classList.remove("active");
 
+
+
+  return;
+}
 if (mode === "loot") {
 
   const item = player.inventory[player.inventory.length - 1];
@@ -1265,10 +1269,6 @@ if (e.key.toLowerCase() === "g") {
   mode = "explore";
    if (triggerAwakening()) return;
   renderMap();
-  return;
-}
-
-
   return;
 }
 
