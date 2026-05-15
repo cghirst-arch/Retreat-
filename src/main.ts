@@ -83,6 +83,7 @@ let player = {
   isDead: false,
   xp: 62000,
   gold: 50,
+  inventory: [],
   poisoned: false,
   weapon: { bonus: 6, dur: MAX_DUR },
   armor: { bonus: 4, dur: MAX_DUR },
