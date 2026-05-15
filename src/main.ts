@@ -1209,6 +1209,39 @@ if (mode === "pause") {
 
   pauseOverlay.classList.remove("active");
 
+if (mode === "loot") {
+
+  const item = player.inventory[player.inventory.length - 1];
+
+  if (e.key.toLowerCase() === "e" && item) {
+    // Equip weapon
+    player.weapon = {
+      bonus: item.attack,
+      dur: MAX_DUR
+    };
+
+    lastLootText = `Equipped: ${item.name}`;
+
+    mode = "explore";
+    renderMap();
+    return;
+  }
+
+  if (e.key.toLowerCase() === "g" && item) {
+    // Convert to gold
+    const value = Math.floor(item.attack * 5);
+    player.gold += value;
+
+    lastLootText = `Converted for ${value} gold`;
+
+    mode = "explore";
+    renderMap();
+    return;
+  }
+
+  return;
+}
+
   if (mode === "combat") renderCombat();
   else renderMap();
 
