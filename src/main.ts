@@ -842,8 +842,14 @@ function generateLoot(level: number) {
 }
 
 
+
 function rollDrop(level: number) {
-  return createWeapon(level);
+  const roll = Math.random();
+
+  if (roll < 0.5) return null;        // 50% nothing
+  if (roll < 0.75) return createWeapon(level);  // 25% weapon
+
+  return createWeapon(level); // temp (we’ll swap for armor later)
 }
 
 
