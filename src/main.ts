@@ -121,7 +121,7 @@ let monologueIndex = 0;
 let monologueInterval: any = null;
 let monologueDone = false;
 let monologueResumeToExplore = false;
-let mode: "title" | "intro" | "explore" | "combat" | "stairs" | "chest" | "vendor" | "dead" | "pause" = "title";
+let mode: "title" | "intro" | "explore" | "combat" | "loot" | "stairs" | "chest" | "vendor" | "dead" | "pause" = "title";
 let titleLoop: any = null;
 let torchTime = 0
 let enemy: any = null;
@@ -770,7 +770,11 @@ if (enemy.hp <= 0) {
     lastLootText = "Nothing dropped.";
   }
 
-  resolveEncounter(true);
+  
+mode = "loot";
+renderMap();
+return;
+
   return;
 }
 
