@@ -128,7 +128,7 @@ let enemy: any = null;
 let fightUsedWeapon = false;
 let fightHitArmor = false;
 let combatText = "";
-
+let lastLootText = "";
 let stats = {
   enemiesKilled: 0,
   
