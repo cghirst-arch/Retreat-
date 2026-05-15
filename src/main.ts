@@ -1343,9 +1343,20 @@ if (mode === "intro") {
 
   
 
-  if (mode !== "explore" && mode !== "combat" && mode !== "vendor" && mode !== "stairs" && mode !== "dead" && mode !== "title" && mode !== "intro") {
-    mode = "explore";
-  }
+ 
+if (mode !== "explore" &&
+    mode !== "combat" &&
+    mode !== "vendor" &&
+    mode !== "stairs" &&
+    mode !== "dead" &&
+    mode !== "title" &&
+    mode !== "intro" &&
+    mode !== "loot" &&
+    mode !== "monologue") {
+  mode = "explore";
+}
+
+  
   
   console.log("KEY:", e.key, "CODE:", e.code, "MODE:", mode);
  
