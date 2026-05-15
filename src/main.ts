@@ -759,6 +759,8 @@ if (enemy.hp <= 0) {
 
   player.gold += loot.gold;
   player.exp += loot.exp;
+   
+  console.log("Inventory:", player.inventory);
 
   if (loot.drop) {
      player.inventory.push(loot.drop);
