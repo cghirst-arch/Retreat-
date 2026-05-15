@@ -1297,7 +1297,7 @@ else if (mode === "explore" || mode === "combat") {
   
   
 
-}  
+  
 
 if (mode === "monologue") {
   // Skip typing
