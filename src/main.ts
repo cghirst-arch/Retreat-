@@ -858,7 +858,7 @@ function getAdjective() {
 }
 
 function createWeapon(level: number) {
-  const tier = getTier(level, weaponTiers);
+  const tier = getTier(level, weaponTiers) || weaponTiers[0];
   const adj = getAdjective();
 
   const baseAtk = rollStat(tier.atkMin, tier.atkMax);
