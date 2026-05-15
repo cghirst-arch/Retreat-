@@ -1196,6 +1196,52 @@ ${lastLootText}
 window.addEventListener("keydown", e => {
   
 
+if (mode === "loot") {
+
+  if (e.key.toLowerCase() === "e") {
+    const item = player.inventory[player.inventory.length - 1];
+
+    if (item) {
+      player.weapon = {
+        bonus: item.attack,
+        dur: MAX_DUR
+      };
+
+      player.inventory.pop();
+      lastLootText = `Equipped: ${item.name}`;
+    } else {
+      lastLootText = "Nothing to equip.";
+    }
+
+    mode = "explore";
+    if (triggerAwakening()) return;
+    renderMap();
+    return;
+  }
+
+  if (e.key.toLowerCase() === "g") {
+    const item = player.inventory[player.inventory.length - 1];
+
+    if (item) {
+      const value = Math.floor(item.attack * 5);
+      player.gold += value;
+
+      player.inventory.pop();
+      lastLootText = `Converted for ${value} gold`;
+    } else {
+      lastLootText = "Nothing to convert.";
+    }
+
+    mode = "explore";
+    if (triggerAwakening()) return;
+    renderMap();
+    return;
+  }
+
+  return; // 🚨 CRITICAL: block all other inputs
+}
+
+
 
   
 
@@ -1223,54 +1269,7 @@ if (mode === "pause") {
 
   return;
 }
-if (mode === "loot") {
 
-  const item = player.inventory[player.inventory.length - 1];
-
- 
-if (e.key.toLowerCase() === "e") {
-  const item = player.inventory[player.inventory.length - 1];
-
-  if (item) {
-    player.weapon = {
-      bonus: item.attack,
-      dur: MAX_DUR
-    };
-
-    player.inventory.pop(); // remove item
-
-    lastLootText = `Equipped: ${item.name}`;
-  } else {
-    lastLootText = "Nothing to equip.";
-  }
-
-  mode = "explore";
-   if (triggerAwakening()) return;
-  renderMap();
-  return;
-}
-
-
-  
-if (e.key.toLowerCase() === "g") {
-  const item = player.inventory[player.inventory.length - 1];
-
-  if (item) {
-    const value = Math.floor(item.attack * 5);
-    player.gold += value;
-
-    player.inventory.pop(); // remove item
-
-    lastLootText = `Converted for ${value} gold`;
-  } else {
-    lastLootText = "Nothing to convert.";
-  }
-
-  mode = "explore";
-   if (triggerAwakening()) return;
-  renderMap();
-  return;
-}
 
   if (mode === "combat") renderCombat();
   else renderMap();
