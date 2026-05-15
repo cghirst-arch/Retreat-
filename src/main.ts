@@ -763,8 +763,8 @@ if (enemy.hp <= 0) {
   console.log("Inventory:", player.inventory);
 
   if (loot.drop) {
-     player.inventory.push(loot.drop);
-     combatText += `The enemy dropped: ${loot.drop.name} (ATK ${loot.drop.attack})\n`;
+     combatText += `Found: ${loot.drop.name} (ATK ${loot.drop.attack})\n`;
+     
   } else {
     combatText += `No item dropped.\n`;
   }
