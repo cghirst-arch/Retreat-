@@ -757,7 +757,7 @@ if (enemy.hp <= 0) {
 
   combatText += `You gain ${loot.gold} gold and ${loot.exp} EXP.\n`;
 
-  player.gold += loot.gold;
+  player.gold += loot.gold || 0;
   player.exp += loot.exp;
    
   console.log("Inventory:", player.inventory);
