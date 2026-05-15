@@ -1,3 +1,4 @@
+document.body.innerHTML = "<h1>GAME LOADING</h1>";
 import "./style.css";
 
 
