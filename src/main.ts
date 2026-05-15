@@ -902,7 +902,6 @@ if (killed) {
 
   stats.enemiesKilled++;   // ✅ ADD IT HERE (top of block)
 
-  if (triggerAwakening()) return;
 
   const xpGain = xpPerKillForFloor(floor);
 
@@ -1224,31 +1223,51 @@ if (mode === "loot") {
 
   const item = player.inventory[player.inventory.length - 1];
 
-  if (e.key.toLowerCase() === "e" && item) {
-    // Equip weapon
+ 
+if (e.key.toLowerCase() === "e") {
+  const item = player.inventory[player.inventory.length - 1];
+
+  if (item) {
     player.weapon = {
       bonus: item.attack,
       dur: MAX_DUR
     };
 
-    lastLootText = `Equipped: ${item.name}`;
+    player.inventory.pop(); // remove item
 
-    mode = "explore";
-    renderMap();
-    return;
+    lastLootText = `Equipped: ${item.name}`;
+  } else {
+    lastLootText = "Nothing to equip.";
   }
 
-  if (e.key.toLowerCase() === "g" && item) {
-    // Convert to gold
+  mode = "explore";
+   if (triggerAwakening()) return;
+  renderMap();
+  return;
+}
+
+
+  
+if (e.key.toLowerCase() === "g") {
+  const item = player.inventory[player.inventory.length - 1];
+
+  if (item) {
     const value = Math.floor(item.attack * 5);
     player.gold += value;
 
-    lastLootText = `Converted for ${value} gold`;
+    player.inventory.pop(); // remove item
 
-    mode = "explore";
-    renderMap();
-    return;
+    lastLootText = `Converted for ${value} gold`;
+  } else {
+    lastLootText = "Nothing to convert.";
   }
+
+  mode = "explore";
+   if (triggerAwakening()) return;
+  renderMap();
+  return;
+}
+
 
   return;
 }
